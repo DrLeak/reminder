@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script>
+		  
+		var player = null;
+		window.addEventListener('message', function(e) {
+			if (e.data.message == 'play') {
+				
+			  if (player != null) {
+				player.pause();
+				player.currentTime = 0;
+			  }
+			  player = new Audio("./sound/sound.ogg");
+			  player.volume = 1.0;
+
+			  player.play();
+			}
+		})
+        </script>
+    </head>
+</html>
