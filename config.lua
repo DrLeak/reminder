@@ -12,6 +12,11 @@ AddEventHandler('onClientResourceStart', function(resource)
 			{ name="time", help="[hour:minute]" },
 			{ name="notification", help="[what do you want to be reminded of?]" }
 		})
+		
+		TriggerEvent('chat:addSuggestion', '/timer', 'reminds you in any given minutes again.', {
+			{ name="time", help="[minute]" },
+			{ name="notification", help="[what do you want to be reminded of?]" }
+		})
 	end
 end)
 
