@@ -1,22 +1,52 @@
 <html>
     <head>
         <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
-		  
-		var player = null;
-		window.addEventListener('message', function(e) {
-			if (e.data.message == 'play') {
-				
-			  if (player != null) {
-				player.pause();
-				player.currentTime = 0;
-			  }
-			  player = new Audio("./sound/sound.ogg");
-			  player.volume = 1.0;
+		$(function(){
+			window.onload = (e) => {
+				var player = null;
+				window.addEventListener('message', function(e) {
+					if (e.data.message == 'play') {
+						
+					  if (player != null) {
+						player.pause();
+						player.currentTime = 0;
+					  }
+					  player = new Audio("./sound/sound.ogg");
+					  player.volume = 1.0;
 
-			  player.play();
-			}
-		})
+					  player.play();
+					} else if (e.data.message == 'list') {
+						console.log(e.data.hidden)
+						if (e.data.hidden == false) {
+							$("#reminds").show(200);
+						} else if (e.data.hidden == true) {
+							$("#reminds").hide(200);
+						}
+						document.getElementById("reminds").innerHTML = e.data.reminds;
+					}
+				})
+			};
+		});
+		
         </script>
+		
+		<style>
+			div {
+			  display: none;
+			  background-color: lightgrey;
+			  background-image: url('https://i.ibb.co/dkNxgxc/paper.jpg');
+			  width: 300px;
+			  border: 2px solid gray;
+			  border-radius: 2px;
+			  padding: 50px;
+			  margin: 20px;
+			  white-space: pre;
+			  word-warp: break-word;
+			}
+		</style>
+		
+		<div id="reminds">nothing here!</div>
     </head>
 </html>
